@@ -1,6 +1,7 @@
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 from base_page import BasePage
+from login_page import LoginPage
 from base_page import IncorrectPageException
 from women_page import WomenPage
 
@@ -26,4 +27,8 @@ class HomePage(BasePage):
     def women_tab(self):
         self.driver.find_element_by_xpath("//a[@title='Women']").click()
         return WomenPage(self.driver)
+
+    def sign_in_button(self):
+        self.driver.find_element_by_xpath("//a[contains(@title, 'Log in to your customer account')]").click()
+        return LoginPage(self.driver)
 

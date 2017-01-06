@@ -1,7 +1,6 @@
-
 from selenium.webdriver.common.by import By
 from base_page import BasePage
-
+from pages.specific_dress_page import SpecificDressPage
 
 
 class EveningDressesPage(BasePage):
@@ -16,6 +15,7 @@ class EveningDressesPage(BasePage):
             (By.XPATH, "//img[contains(@src, 'http://automationpractice.com/img/p/1/0/10-home_default.jpg')]")
 
         printed_dress.click()
+        return SpecificDressPage(self.driver)
 
 
 

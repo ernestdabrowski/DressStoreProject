@@ -1,4 +1,5 @@
 from selenium import webdriver
+from pages.order_page import OrderPage
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.common.by import By
@@ -32,4 +33,4 @@ class SpecificDressPage(BasePage):
 
         proceed_button = self.driver.find_element(By.XPATH, "//a[contains(@title, 'Proceed to checkout')]")
         proceed_button.click()
-
+        return OrderPage(self.driver)
