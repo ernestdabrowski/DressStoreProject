@@ -9,11 +9,11 @@ import unittest
 import time
 
 
-class PageOpensTest(TestCase1, unittest.TestCase):
+class DressOrderTest(TestCase1, unittest.TestCase):
     def setUp(self):
-        super(PageOpensTest, self).setUp()
+        super(DressOrderTest, self).setUp()
 
-    def test_verify_page_opens(self):
+    def test_dress_order_e2e(self):
 
         action = HomePage(self.driver)
         action._verify_page()
@@ -35,13 +35,17 @@ class PageOpensTest(TestCase1, unittest.TestCase):
         action5.proceed_to_checkout()
 
         action6 = OrderPage(self.driver)
-        action6.proceed_to_checkout()
+        action6.proceed_to_checkout_on_summary_tab()
+        action6.sign_in_into_order_page("testbls@yahoo.com", "123456")
+        action6.address_tab_order_page()
+        action6.shipping_tab_order_page()
+        action6.payment_tab_order_page()
 
 
         time.sleep(10)
 
     def tearDown(self):
-        super(PageOpensTest, self).tearDown()
+        super(DressOrderTest, self).tearDown()
 
 
 if __name__ == "__main__":
