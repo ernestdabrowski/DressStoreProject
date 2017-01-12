@@ -1,8 +1,10 @@
 from test_case import TestCase1
 from pages.home_page import HomePage
 from pages.login_page import LoginPage
+from test_data import AccountData
+from pages.my_account_page import MyAccount
 import unittest
-import time
+
 
 
 class CreateAccountTest(TestCase1, unittest.TestCase):
@@ -11,18 +13,31 @@ class CreateAccountTest(TestCase1, unittest.TestCase):
 
     def test_create_net_account(self):
 
-        action = HomePage(self.driver)
-        action.sign_in_button()
+        home_page = HomePage(self.driver)
+        home_page.sign_in_button()
 
-        action2 = LoginPage(self.driver)
-        action2._verify_page()
-        action2.create_an_account_email_address_form("testbls@yahoo.com")
-        action2.create_an_account_button()
+        login_page = LoginPage(self.driver)
+        login_page._verify_page()
+        login_page.create_an_account_email_address_form(AccountData["email"])
 
-        action2.create_an_account_personal_info_form("Ernest", "Smith", "123456", "Skoda", "MainStreet", "New York",
-                                                     "32", "21", "12345", "678345123", "testbls2@yahoo.com")
+        login_page.create_an_account_button()
 
-        time.sleep(10)
+        login_page.create_an_account_personal_info_form(AccountData["name"],
+                                                        AccountData["last_name"],
+                                                        AccountData["password"],
+                                                        AccountData["company"],
+                                                        AccountData["address"],
+                                                        AccountData["city"],
+                                                        AccountData["state_value"],
+                                                        AccountData["country_value"],
+                                                        AccountData["postal"],
+                                                        AccountData["phone"],
+                                                        AccountData["alias_email"])
+
+        my_account_page = MyAccount(self.driver)
+        my_account_page.my_account()
+
+
 
     def tearDown(self):
         super(CreateAccountTest, self).tearDown()

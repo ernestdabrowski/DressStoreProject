@@ -6,7 +6,7 @@ from pages.evening_dresses_page import EveningDressesPage
 from pages.specific_dress_page import SpecificDressPage
 from pages.order_page import OrderPage
 import unittest
-import time
+from test_data import DressOrderData
 
 
 class DressOrderTest(TestCase1, unittest.TestCase):
@@ -15,34 +15,35 @@ class DressOrderTest(TestCase1, unittest.TestCase):
 
     def test_dress_order_e2e(self):
 
-        action = HomePage(self.driver)
-        action._verify_page()
-        action.women_tab()
+        home_page = HomePage(self.driver)
+        home_page._verify_page()
+        home_page.women_tab()
 
-        action2 = WomenPage(self.driver)
-        action2._verify_page()
-        action2.select_subcategory()
+        women_page = WomenPage(self.driver)
+        women_page._verify_page()
+        women_page.select_subcategory()
 
-        action3 = DressesPage(self.driver)
-        action3.select_dresses_subcategory()
+        dress_page = DressesPage(self.driver)
+        dress_page.select_dresses_subcategory()
 
-        action4 = EveningDressesPage(self.driver)
-        action4.select_evening_dress()
+        evening_dresses_page = EveningDressesPage(self.driver)
+        evening_dresses_page.select_evening_dress()
 
-        action5 = SpecificDressPage(self.driver)
-        action5.set_quantity("2")
-        action5.add_to_cart()
-        action5.proceed_to_checkout()
+        specific_dress_page = SpecificDressPage(self.driver)
+        specific_dress_page.set_quantity("2")
+        specific_dress_page.add_to_cart()
+        specific_dress_page.proceed_to_checkout()
 
-        action6 = OrderPage(self.driver)
-        action6.proceed_to_checkout_on_summary_tab()
-        action6.sign_in_into_order_page("testbls@yahoo.com", "123456")
-        action6.address_tab_order_page()
-        action6.shipping_tab_order_page()
-        action6.payment_tab_order_page()
+        order_page = OrderPage(self.driver)
+        order_page.proceed_to_checkout_on_summary_tab()
+        order_page.sign_in_into_order_page(DressOrderData["email"], DressOrderData["password"])
+
+        order_page.address_tab_order_page()
+        order_page.shipping_tab_order_page()
+        order_page.payment_tab_order_page()
 
 
-        time.sleep(10)
+
 
     def tearDown(self):
         super(DressOrderTest, self).tearDown()

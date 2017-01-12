@@ -4,7 +4,7 @@ from base_page import BasePage
 from login_page import LoginPage
 from base_page import IncorrectPageException
 from women_page import WomenPage
-
+from uimap import HomePageMap
 
 class HomePage(BasePage):
 
@@ -20,15 +20,16 @@ class HomePage(BasePage):
 
     def search_text_field(self):
 
-        search_text_field = self.driver.find_element_by_id("search_query_top")
+        search_text_field = self.driver.find_element_by_id(HomePageMap["SearchQueryTextField"])
         search_text_field.click()
         search_text_field.send_keys("Evening")
 
     def women_tab(self):
-        self.driver.find_element_by_xpath("//a[@title='Women']").click()
+        self.driver.find_element_by_xpath(HomePageMap["WomenTabXpath"]).click()
         return WomenPage(self.driver)
 
     def sign_in_button(self):
-        self.driver.find_element_by_xpath("//a[contains(@title, 'Log in to your customer account')]").click()
+        self.driver.find_element_by_xpath(HomePageMap["SignInButtonXpath"]).click()
         return LoginPage(self.driver)
+
 

@@ -4,7 +4,7 @@ from selenium.webdriver.support import expected_conditions
 from base_page import IncorrectPageException
 from base_page import BasePage
 from dresses_page import DressesPage
-
+from uimap import WomenPageMap
 
 class WomenPage(BasePage):
     def __init__(self, driver):
@@ -21,10 +21,10 @@ class WomenPage(BasePage):
     def select_subcategory(self):
 
         WebDriverWait(self.driver, 10).until(expected_conditions.visibility_of_element_located
-                     ((By.XPATH, "//img[contains(@src,'http://automationpractice.com/img/c/8-medium_default.jpg')]")))
+                                             ((By.XPATH, WomenPageMap["DressesSubcategoryXpath"])))
 
-        dresses_subcategory = self.driver.find_element_by_xpath\
-                            ("//img[contains(@src,'http://automationpractice.com/img/c/8-medium_default.jpg')]")
+        dresses_subcategory = self.driver.find_element_by_xpath(WomenPageMap["DressesSubcategoryXpath"])
+
         dresses_subcategory.click()
         return DressesPage(self.driver)
 

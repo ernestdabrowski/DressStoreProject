@@ -4,6 +4,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 from base_page import IncorrectPageException
 from base_page import BasePage
+from uimap import LoginPageMap
 
 
 class LoginPage(BasePage):
@@ -49,51 +50,49 @@ class LoginPage(BasePage):
         self.alias_email = alias_email
 
         WebDriverWait(self.driver, 10).until(expected_conditions
-                                             .visibility_of_element_located((By.ID, "customer_firstname")))
+                                             .visibility_of_element_located((By.ID, LoginPageMap["FirstNameID"])))
 
-        name_text_field = self.driver.find_element_by_id("customer_firstname")
+        name_text_field = self.driver.find_element_by_id(LoginPageMap["FirstNameID"])
         name_text_field.clear()
         name_text_field.send_keys(self.name)
 
-        last_name_text_field = self.driver.find_element_by_id("customer_lastname")
+        last_name_text_field = self.driver.find_element_by_id(LoginPageMap["LastNameID"])
         last_name_text_field.clear()
         last_name_text_field.send_keys(self.last_name)
 
-        password_text_field = self.driver.find_element_by_id("passwd")
+        password_text_field = self.driver.find_element_by_id(LoginPageMap["PasswordID"])
         password_text_field.clear()
         password_text_field.send_keys(self.password)
 
-        company_text_field = self.driver.find_element_by_id("company")
+        company_text_field = self.driver.find_element_by_id(LoginPageMap["CompanyID"])
         company_text_field.clear()
         company_text_field.send_keys(self.company)
 
-        address_text_field = self.driver.find_element_by_id("address1")
+        address_text_field = self.driver.find_element_by_id(LoginPageMap["Address1ID"])
         address_text_field.clear()
         address_text_field.send_keys(self.address)
 
-        city_text_field = self.driver.find_element_by_id("city")
+        city_text_field = self.driver.find_element_by_id(LoginPageMap["CityID"])
         city_text_field.clear()
         city_text_field.send_keys(self.city)
 
-        postal_text_field = self.driver.find_element_by_id("postcode")
+        postal_text_field = self.driver.find_element_by_id(LoginPageMap["PostalID"])
         postal_text_field.clear()
         postal_text_field.send_keys(self.postal)
 
-        phone_text_field = self.driver.find_element_by_id("phone_mobile")
+        phone_text_field = self.driver.find_element_by_id(LoginPageMap["PhoneID"])
         phone_text_field.clear()
         phone_text_field.send_keys(self.phone)
 
-        alias_email_text_field = self.driver.find_element_by_id("alias")
+        alias_email_text_field = self.driver.find_element_by_id(LoginPageMap["AliasID"])
         alias_email_text_field.clear()
         alias_email_text_field.send_keys(self.alias_email)
 
-        state_drop_down = Select(self.driver.find_element_by_id("id_state"))
+        state_drop_down = Select(self.driver.find_element_by_id(LoginPageMap["StateID"]))
         state_drop_down.select_by_value(self.state_value)
 
-        country_drop_down = Select(self.driver.find_element_by_id("id_country"))
+        country_drop_down = Select(self.driver.find_element_by_id(LoginPageMap["CountryID"]))
         country_drop_down.select_by_value(self.country_value)
 
-        register_button = self.driver.find_element_by_id("submitAccount")
+        register_button = self.driver.find_element_by_id(LoginPageMap["RegisterButtonID"])
         register_button.click()
-
-

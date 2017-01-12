@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
 from base_page import BasePage
 from pages.specific_dress_page import SpecificDressPage
+from uimap import EveningPageMap
 
 
 class EveningDressesPage(BasePage):
@@ -12,12 +13,10 @@ class EveningDressesPage(BasePage):
     def select_evening_dress(self):
 
         printed_dress = self.driver.find_element\
-            (By.XPATH, "//img[contains(@src, 'http://automationpractice.com/img/p/1/0/10-home_default.jpg')]")
+            (By.XPATH, EveningPageMap["PrintedDressXpath"])
 
         printed_dress.click()
         return SpecificDressPage(self.driver)
-
-
 
 
 
